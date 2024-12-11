@@ -5,6 +5,7 @@ namespace AdventOfCode.Solutions.Year2024.Day11;
 
 class Solution : SolutionBase
 {
+    Dictionary<string, BigInteger> memoTable = new Dictionary<string, BigInteger>();
     public Solution() : base(11, 2024, "") 
     {
         Debug = false;
@@ -18,7 +19,6 @@ class Solution : SolutionBase
         for(int blink = 0; blink < blinks; blink++)
         {
             curStones = BasicBlink(curStones);
-            Console.WriteLine($"Values: {String.Join(" ", curStones)}");
         }
 
         return curStones.Count.ToString();
@@ -52,13 +52,43 @@ class Solution : SolutionBase
         List<BigInteger> curStones = new List<BigInteger>();
         curStones = Input.Split(' ').Select(BigInteger.Parse).ToList();
         var blinks = 75;
-        for (int blink = 0; blink < blinks; blink++)
+        BigInteger result = 0;
+        foreach(BigInteger stone in curStones)
         {
-            curStones = BasicBlink(curStones);
-            Console.WriteLine($"Blink: {blink}");
+            result += IndividualBlink(stone, blinks);
         }
 
-        return curStones.Count.ToString();
+        return result.ToString();
     }
 
+    BigInteger IndividualBlink(BigInteger startStone, int numberOfBlinks)
+    {
+        if(numberOfBlinks == 0)
+        {
+            return 1;
+        }
+
+        var stoneString = startStone.ToString();
+        if (memoTable.TryGetValue($"{stoneString},{numberOfBlinks}", out BigInteger value))
+        {
+            return value;
+        }
+
+        BigInteger totalStones;
+        if (startStone == 0)
+        {
+            totalStones = IndividualBlink(1, numberOfBlinks - 1);
+        }
+        else if (stoneString.Length % 2 == 0) // Check if even number of digits
+        {
+            totalStones = IndividualBlink(BigInteger.Parse(stoneString[0..(stoneString.Length / 2)]), numberOfBlinks - 1);
+            totalStones += IndividualBlink(BigInteger.Parse(stoneString[(stoneString.Length / 2)..]), numberOfBlinks - 1);
+        }
+        else
+        {
+            totalStones = IndividualBlink(startStone * 2024, numberOfBlinks - 1);
+        }
+        memoTable.Add($"{stoneString},{numberOfBlinks}", totalStones);
+        return totalStones;
+    }
 }
