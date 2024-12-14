@@ -158,14 +158,12 @@ class Solution : SolutionBase
         var iter = 1;
         foreach(var cross in crosses)
         {
-            Console.WriteLine($"Checking cross {iter++} of {crosses.Count}");
             if (cross.Item1 == guard.Item1 && cross.Item2 == guard.Item2)
             {
                 continue;
             }
             if (CheckForLoop(cross, guard, map))
             {
-                Console.WriteLine($"Loop found with obstacle at: {cross}");
                 result++;
             }
             // Revert the map from the cross change

@@ -30,7 +30,6 @@ class Solution : SolutionBase
             var lineSplit = line.Split(" ").Select(int.Parse);
             if ((isSafeCheck = IsLineSafe(lineSplit)) == -1)
             {
-                Console.WriteLine($"Safe: {line}");
                 countSafe++;
                 continue;
             }
@@ -41,7 +40,6 @@ class Solution : SolutionBase
                 var lineSplitLeft = lineSplit.Take(isSafeCheck - 1).Concat(lineSplit.Skip(isSafeCheck));
                 if (IsLineSafe(lineSplitLeft) == -1)
                 {
-                    Console.WriteLine($"Safe: {line}");
                     countSafe++;
                     continue;
                 }

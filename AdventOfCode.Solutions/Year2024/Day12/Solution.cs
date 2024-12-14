@@ -39,7 +39,6 @@ class Solution : SolutionBase
                 {
                     var result = CalculateRegion(letterGrid, visitedGrid, row, col);
                     price += result.Item1 * result.Item2;
-                    //Console.WriteLine($"Received perimeter {result.Item2} and area {result.Item1} for character {letterGrid[row][col]}");
                 }
             }
         }
@@ -132,7 +131,6 @@ class Solution : SolutionBase
                 {
                     var result = CalculateRegionWithSides(letterGrid, visitedGrid, row, col);
                     price += result.Item1 * result.Item2;
-                    Console.WriteLine($"Received area {result.Item1} and sides {result.Item2} for character {letterGrid[row][col]}");
                 }
             }
         }
