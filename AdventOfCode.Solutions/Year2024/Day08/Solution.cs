@@ -93,8 +93,6 @@ class Solution : SolutionBase
                 {
                     // Calculate the two points that are the same distance from the two antenna
                     (int row, int col) distanceVector = (antennaLocations.Value[j].row - antennaLocations.Value[i].row, antennaLocations.Value[j].col - antennaLocations.Value[i].col);
-                    (int row, int col) antinodeMain = (antennaLocations.Value[i].row - distanceVector.row, antennaLocations.Value[i].col - distanceVector.col); // Calculate the first antinode
-                    (int row, int col) antinodeOpposite = (antennaLocations.Value[j].row + distanceVector.row, antennaLocations.Value[j].col + distanceVector.col); // Calculate the first antinode from the opposite direction
 
                     (int row, int col) currentLocation = antennaLocations.Value[i];
                     while (currentLocation.row >= 0 && currentLocation.row < grid.Count && currentLocation.col >= 0 && currentLocation.col < grid[0].Count)

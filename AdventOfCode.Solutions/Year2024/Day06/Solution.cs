@@ -155,7 +155,7 @@ class Solution : SolutionBase
 
         // Check each possible double cross location
         var result = 0;
-        var iter = 1;
+        //var iter = 1;
         foreach(var cross in crosses)
         {
             if (cross.Item1 == guard.Item1 && cross.Item2 == guard.Item2)

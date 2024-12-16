@@ -124,7 +124,7 @@ partial class Solution : SolutionBase
                 robot.position = (targetCol, targetRow);
             }
 
-            SaveRobotGridToFileAsImage(robots, gridWidth, gridHeight, (second + 1).ToString());
+            //SaveRobotGridToFileAsImage(robots, gridWidth, gridHeight, (second + 1).ToString());
         }
 
         return second.ToString();
